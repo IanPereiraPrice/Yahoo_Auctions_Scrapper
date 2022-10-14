@@ -42,53 +42,9 @@ WITH money_cte_1 AS(
     )
 
 --standardize the data types of incoming columns
-,cleaning_dtype_cte AS (
-    SELECT 
-        auction_id
-        ,title
-        ,bids
-        ,(LEFT(auction_start,10)||' '||RIGHT(auction_start,5))::TIMESTAMP AS auction_start
-        ,(LEFT(auction_end,10)||' '||RIGHT(auction_end,5))::TIMESTAMP AS auction_end
-        ,REPLACE(LEFT(price,-1),',','')::int AS price
-        ,'¥' AS currency
-        ,regexp_replace(tax, '\D+', '', 'g')::int AS tax
-        ,CASE
-            WHEN auction_extension = 'なし' THEN 'No'
-            ELSE 'Yes'
-            END AS auction_extension
-        ,CASE
-            WHEN best_offer_accepted = 'なし' THEN 'No'
-            ELSE 'Yes'
-            END AS best_offer_accepted
-        ,REPLACE(all_images,' ',',')AS all_images
-    FROM "Card_Sales_Staging" 
-)
 
 --adjust columns with taxed final price so that final comparison is the same
-,cte_add_final_price AS(
-    SELECT 
-        auction_id
-        ,title
-        ,auction_start
-        ,auction_end
-        ,bids
-        ,price
-        , CASE 
-            WHEN tax = 0
-            THEN tax
-            ELSE tax-price
-        END AS tax
-        , CASE 
-            WHEN tax = 0
-            THEN Price
-            ELSE tax 
-        END AS final_price_yen
-        ,currency
-        ,auction_extension
-        ,best_offer_accepted
-        ,all_images
-    FROM cleaning_dtype_cte
-    )
+
 
 --Put it all together
 INSERT INTO "final_sales_table"(auction_id,title,price,bids,tax,final_price_yen,currency,final_price_usd,auction_start,auction_end,auction_extension,best_offer_accepted,all_images)
