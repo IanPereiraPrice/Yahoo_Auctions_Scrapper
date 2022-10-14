@@ -1,0 +1,11 @@
+WITH 
+
+yen_usd AS (
+
+    SELECT *
+    FROM {{ source('card_db','yen_to_usd')}}
+
+)
+
+SELECT * 
+FROM yen_usd 
