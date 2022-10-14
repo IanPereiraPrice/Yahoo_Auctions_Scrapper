@@ -1,0 +1,11 @@
+WITH
+
+card_staging AS (
+
+    SELECT *
+    FROM {{ source('yahoo_card_db','card_sales_staging')}}
+
+)
+
+SELECT * 
+FROM card_staging
