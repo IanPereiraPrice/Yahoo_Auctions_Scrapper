@@ -6,9 +6,9 @@ Code for the Scrapy/SqlAlchemy to postgres pipeline is located in the "Yahoo_to_
  - To begin scraping, only need to run the Yahoo_to_SQL.py file. Configre start url to scrape from here.
  - Unfinished folder contains a spider for use with a proxy that is not yet finished.
 
-The Models folder contains sql quaries that have been refactored to function with dbt and Snowflake. Still a work in progress
+The Models folder contains sql quarries that have been refactored to function with dbt and Snowflake. Still a work in progress
 
-Loose sql files in main folder are SQL quaries that have not yet been refactored for dbt, and only are for use in a local Postgres db. 
+Loose sql files in main folder are SQL quarries that have not yet been refactored for dbt, and only are for use in a local Postgres db. 
 
 Priorities for the project:
 - Refactor all code to work with dbt and Snowflake
