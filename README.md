@@ -1,3 +1,5 @@
+# Project has now been moved over to Auction-Scraper repo and will not be updated here
+
 # Yahoo_Auctions_Scrapper
 Yahoo_Auctions_Scrapper is a tool that allows for the scraping of all yahoo auction pages of a given search term. Also has a variety of stored procedures, functions, and querries to manage the database. All quarries are written in Postgre syntax. 
 
